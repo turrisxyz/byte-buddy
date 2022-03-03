@@ -44,6 +44,11 @@ public class ClassInjectorUsingReflectionTest {
         classLoader = new URLClassLoader(new URL[0], null);
     }
 
+    @Test
+    public void name() throws Exception {
+        ClassInjector.UsingReflection.Dispatcher.UsingUnsafeInjection.make();
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testBootstrapClassLoader() throws Exception {
         new ClassInjector.UsingReflection(ClassLoadingStrategy.BOOTSTRAP_LOADER);

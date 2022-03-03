@@ -30,6 +30,7 @@ import net.bytebuddy.dynamic.scaffold.TypeValidation;
 import net.bytebuddy.dynamic.scaffold.subclass.ConstructorStrategy;
 import net.bytebuddy.implementation.FixedValue;
 import net.bytebuddy.implementation.MethodCall;
+import net.bytebuddy.utility.GraalImageCode;
 import net.bytebuddy.utility.JavaModule;
 import net.bytebuddy.utility.JavaType;
 import net.bytebuddy.utility.RandomString;
@@ -923,7 +924,7 @@ public interface ClassInjector {
                     DynamicType.Builder<?> builder = new ByteBuddy()
                             .with(TypeValidation.DISABLED)
                             .subclass(Object.class, ConstructorStrategy.Default.NO_CONSTRUCTORS)
-                            .name(ClassLoader.class.getName() + "$ByteBuddyAccessor$" + RandomString.make())
+                            .name(ClassLoader.class.getName() + "$ByteBuddyAccessor$V1")
                             .defineMethod("findLoadedClass", Class.class, Visibility.PUBLIC)
                             .withParameters(ClassLoader.class, String.class)
                             .intercept(MethodCall.invoke(ClassLoader.class
